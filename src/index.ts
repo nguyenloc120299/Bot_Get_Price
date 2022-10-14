@@ -44,7 +44,7 @@ const addPrice = async () => {
 
 setInterval(() => {
   addPrice();
-}, 1000 * 60 * 60);
+}, 1000 * 60);
 
 const port = process.env.PORT || 5000;
 

@@ -11,11 +11,11 @@ const getPriceCorkAll = async (req, res) => {
 };
 const getPriceCorkNow = async (req, res) => {
   try {
-       const price = await getPriceCork();
-       return res.json(price);
+    const price = await getPriceCork();
+    return res.json(price);
   } catch (error) {
     console.log(error);
-    
+
   }
 }
 const getPriceCorkDaily = async (req, res) => {
@@ -35,9 +35,9 @@ const getPriceCorkDaily = async (req, res) => {
         $gte: firstday,
         $lte: lastday,
       },
-    }).sort({ date: -1 });
-    const priceMax= _.maxBy(priceDaily,'price')
-     const priceMin = _.minBy(priceDaily, 'price');
+    }).sort({ date: -1 }).select("price date -_id");
+    const priceMax = _.maxBy(priceDaily, 'price')
+    const priceMin = _.minBy(priceDaily, 'price');
     return res.json({
       price: priceDaily,
       priceMax,
@@ -66,5 +66,11 @@ const getPriceCorkDaily = async (req, res) => {
     console.log(error);
   }
 };
+const getpriceWeekly = async (req, res) => {
+  try {
 
+  } catch (error) {
+    console.log(error);
+  }
+}
 export { getPriceCorkAll, getPriceCorkDaily, getPriceCorkNow };
