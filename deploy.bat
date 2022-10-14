@@ -1,0 +1,1 @@
+ssh -i D:\\projects\\key\\product\\rpsgame.world_13.215.70.128.pem ubuntu@13.215.70.128 "cd /var/www/html/rpsgame.world_api && sudo mv ~/rpsGame.zip /var/www/html/rpsgame.world_api && sudo unzip -o rpsGame.zip && pm2 restart 0"
