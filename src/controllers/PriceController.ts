@@ -1,5 +1,6 @@
 import Price from '../models/PriceCork';
 import _ from 'lodash'
+import { getPriceCork } from '../web3';
 const getPriceCorkAll = async (req, res) => {
   try {
     const prices = await Price.find();
@@ -8,7 +9,15 @@ const getPriceCorkAll = async (req, res) => {
     console.log(error);
   }
 };
-
+const getPriceCorkNow = async (req, res) => {
+  try {
+       const price = await getPriceCork();
+       return res.json(price);
+  } catch (error) {
+    console.log(error);
+    
+  }
+}
 const getPriceCorkDaily = async (req, res) => {
   try {
     let today: any = new Date();
@@ -58,4 +67,4 @@ const getPriceCorkDaily = async (req, res) => {
   }
 };
 
-export { getPriceCorkAll, getPriceCorkDaily };
+export { getPriceCorkAll, getPriceCorkDaily, getPriceCorkNow };
