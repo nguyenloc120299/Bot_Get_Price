@@ -40,7 +40,7 @@ const getPriceCorkDaily = async (req, res) => {
         $lte: new Date().getTime()
       },
     })
-      .sort({ date: -1 })
+      .sort({ date: 1 })
       .select('price date -_id');
     const priceMax = _.maxBy(priceDaily, 'price')
     const priceMin = _.minBy(priceDaily, 'price');

@@ -56,7 +56,7 @@ const getPriceCorkDaily = (req, res) => __awaiter(void 0, void 0, void 0, functi
                 $lte: new Date().getTime()
             },
         })
-            .sort({ date: -1 })
+            .sort({ date: 1 })
             .select('price date -_id');
         const priceMax = lodash_1.default.maxBy(priceDaily, 'price');
         const priceMin = lodash_1.default.minBy(priceDaily, 'price');
