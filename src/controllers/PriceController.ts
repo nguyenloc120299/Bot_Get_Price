@@ -22,20 +22,26 @@ const getPriceCorkDaily = async (req, res) => {
   try {
     let today: any = new Date();
     today.setHours(0, 0, 0, 0);
-    let first = today.getDate() - today.getDay();
-    let last = first + 6;
-    let firstday = new Date(today.setDate(first)).toUTCString();
-    let lastday = new Date(today.setDate(last)).toUTCString();
-    let firstDayMonth = new Date(today.setDate(1));
-    let lastDayMonth = new Date(today.getFullYear(), today.getMonth() + 1, 0);
-    lastDayMonth.setHours(23, 59, 59, 0);
-    today = new Date().setHours(0, 0, 0, 0);
+    console.log(today.getTime());
+    
+    // let first = today.getDate() - today.getDay();
+    // let last = first + 6;
+    // let firstday = new Date(today.setDate(first)).toUTCString();
+     //let lastday = new Date(today.setDate(last)).toUTCString();
+    // let firstDayMonth = new Date(today.setDate(1));
+    // let lastDayMonth = new Date(today.getFullYear(), today.getMonth() + 1, 0);
+    // lastDayMonth.setHours(23, 59, 59, 0);
+    // today = new Date().setHours(0, 0, 0, 0);
+    console.log(today);
+    
     const priceDaily = await Price.find({
-      createdAt: {
-        $gte: firstday,
-        $lte: lastday,
+      date: {
+        $gte: today.getTime(),
+        $lte: new Date().getTime()
       },
-    }).sort({ date: -1 }).select("price date -_id");
+    })
+      .sort({ date: -1 })
+      .select('price date -_id');
     const priceMax = _.maxBy(priceDaily, 'price')
     const priceMin = _.minBy(priceDaily, 'price');
     return res.json({
