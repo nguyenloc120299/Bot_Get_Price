@@ -32,7 +32,7 @@ const getPriceCorkDaily = async (req, res) => {
     // let lastDayMonth = new Date(today.getFullYear(), today.getMonth() + 1, 0);
     // lastDayMonth.setHours(23, 59, 59, 0);
     // today = new Date().setHours(0, 0, 0, 0);
-    console.log(today);
+   // console.log(today);
     
     const priceDaily = await Price.find({
       date: {
