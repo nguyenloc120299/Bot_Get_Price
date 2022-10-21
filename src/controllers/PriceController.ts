@@ -36,8 +36,8 @@ const getPriceCorkDaily = async (req, res) => {
     
     const priceDaily = await Price.find({
       date: {
-        $gte: today.getTime(),
-        $lte: new Date().getTime()
+        $gte: today.getTime() - 86400000,
+        // $lte: new Date().getTime()
       },
     })
       .sort({ date: 1 })
