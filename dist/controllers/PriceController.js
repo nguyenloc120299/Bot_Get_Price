@@ -52,8 +52,8 @@ const getPriceCorkDaily = (req, res) => __awaiter(void 0, void 0, void 0, functi
         // console.log(today);
         const priceDaily = yield PriceCork_1.default.find({
             date: {
-                $gte: today.getTime(),
-                $lte: new Date().getTime()
+                $gte: today.getTime() - 86400000,
+                // $lte: new Date().getTime()
             },
         })
             .sort({ date: 1 })
