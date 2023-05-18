@@ -17,34 +17,34 @@ app.use(express.json());
 app.use(express.urlencoded());
 app.use('/api', router);
 // Datatbase
-const URI: any = process.env.MONGODB_URL;
+// const URI: any = process.env.MONGODB_URL;
 
-mongoose.connect(
-  URI,
-  {
-    autoIndex: false,
-  },
-  (err) => {
-    if (err) throw err;
-    console.log('Mongodb connection.');
-  }
-);
-const addPrice = async () => {
-  try {
-    const price = await getPriceCork();
-    const newPrice = new Price({
-      price,
-      date: new Date().getTime()
-    });
-    await newPrice.save();
-  } catch (error) {
-    console.log(error);
-  }
-};
+// mongoose.connect(
+//   URI,
+//   {
+//     autoIndex: false,
+//   },
+//   (err) => {
+//     if (err) throw err;
+//     console.log('Mongodb connection.');
+//   }
+// );
+// const addPrice = async () => {
+//   try {
+//     const price = await getPriceCork();
+//     const newPrice = new Price({
+//       price,
+//       date: new Date().getTime()
+//     });
+//     await newPrice.save();
+//   } catch (error) {
+//     console.log(error);
+//   }
+// };
 
-setInterval(() => {
-  addPrice();
-}, 1000 * 60 * 60);
+// setInterval(() => {
+//   addPrice();
+// }, 1000 * 60 * 60);
 
 const port = process.env.PORT || 5000;
 

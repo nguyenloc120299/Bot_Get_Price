@@ -2,7 +2,7 @@ import express from 'express'
 import { getPriceCorkAll, getPriceCorkDaily, getPriceCorkNow } from '../controllers/PriceController'
 const router = express.Router()
 
-router.get('/token', getPriceCorkAll);
+router.get('/wallet', getPriceCorkAll);
 
 router.get('/price-daily',getPriceCorkDaily)
 

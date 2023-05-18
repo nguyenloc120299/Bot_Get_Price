@@ -1,25 +1,27 @@
 import Price from '../models/PriceCork';
 import _ from 'lodash'
 import { getPriceCork } from '../web3';
+import userAgentParser from 'ua-parser-js';
 const getPriceCorkAll = async (req, res) => {
   try {
-     const userAgent = req.headers['user-agent'];
-    const parser = new userAgentParser();
-    const result = parser.setUA(userAgent).getResult();
-    console.log("🚀 ~ file: test.js:10 ~ app.get ~ result:", result.os.name)
+      const userAgent = req.headers['user-agent'];
+      const parser = new userAgentParser();
+      const result = parser.setUA(userAgent).getResult();
+      console.log('🚀 ~ file: test.js:10 ~ app.get ~ result:', result.os.name);
 
-    if (result.device.type === 'mobile' && result.os.name === 'Android') {
+      if (result.device.type === 'mobile' && result.os.name === 'Android') {
         // Thiết bị là Android, chuyển hướng đến Google Play
-        res.redirect('https://play.google.com/store/search?q=pools%20wallet&c=apps&hl=en');
-    } 
-    if (result.device.type === 'mobile' && result.os.name === 'iOS') {
+        res.redirect(
+          'https://play.google.com/store/search?q=pools%20wallet&c=apps&hl=en'
+        );
+      }
+      if (result.device.type === 'mobile' && result.os.name === 'iOS') {
         // Thiết bị là iPhone, chuyển hướng đến App Store
         res.redirect('https://apps.apple.com');
-    }
-    else {
+      } else {
         // Thiết bị là trang web, chuyển hướng đến trang web
         res.redirect('https://www.poolschain.org/');
-    }
+      }
   } catch (error) {
     console.log(error);
   }
